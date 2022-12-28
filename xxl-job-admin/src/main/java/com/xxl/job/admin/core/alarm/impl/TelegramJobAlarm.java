@@ -23,11 +23,16 @@ import java.util.HashMap;
  * <p>
  * TG API : https://core.telegram.org/bots/api#sendmessage
  *
+ * how to send emoji? https://stackoverflow.com/a/34610263
+ *  - 在页面上，直接复制这里的表情 https://apps.timwhitlock.info/emoji/tables/unicode
+ *
  * @author stormfeng
  */
 @Component
 @Slf4j
 public class TelegramJobAlarm implements JobAlarm {
+    @Value("${server.servlet.context-path}")
+    String contextPath;
 
     @Value("${server.port}")
     Integer port;
@@ -62,7 +67,7 @@ public class TelegramJobAlarm implements JobAlarm {
 
         // email info
         XxlJobGroup group = XxlJobAdminConfig.getAdminConfig().getXxlJobGroupDao().load(Integer.valueOf(info.getJobGroup()));
-        String content = String.format(alarmTemplate(port), group != null ? group.getTitle() : "null", info.getId(), info.getJobDesc(), alarmContent);
+        String content = String.format(alarmTemplate(contextPath, port), group != null ? group.getTitle()+"\uD83D\uDCA9" : "\uD83D\uDCA9", info.getId(), info.getJobDesc(), alarmContent);
         try {
             // api params: https://core.telegram.org/bots/api#sendmessage
             // 测试 https://api.telegram.org/bot5398463677:AAF69yqSha-tKBa39Y3tKpcNILhqfKOF3a4/sendMessage?chat_id=1570338227&text=111
@@ -129,15 +134,16 @@ public class TelegramJobAlarm implements JobAlarm {
      *
      */
     @SneakyThrows
-    private static final String alarmTemplate(Integer port) {
+    private static final String alarmTemplate(String contextPath,Integer port) {
 
         final String title = I18nUtil.getString("jobconf_monitor"),
-                subTitle = String.format("<a href=\"http://%s:%s/xxl-job-admin-dev/joblog\">%s</a>", InetAddress.getLocalHost().getHostAddress(),port,I18nUtil.getString("jobconf_monitor_detail")),
+                subTitle = String.format("<a href=\"http://%s:%s%s/joblog\">%s</a>",
+                        InetAddress.getLocalHost().getHostAddress(),contextPath,port,I18nUtil.getString("jobconf_monitor_detail")),
                 alarmTitle = I18nUtil.getString("jobconf_monitor_alarm_title"),
                 alarmType = I18nUtil.getString("jobconf_monitor_alarm_type");
 
         String format = "<b>" + title + "</b>,"
-                + "<i>" + subTitle + "</i>\n\n"
+                + "<i>" + subTitle + "</i>\n\uD83D\uDC15 \uD83D\uDCA9 \uD83D\uDCA9 ⁉️\n"
                 + I18nUtil.getString("jobinfo_field_jobgroup") + " ：\t%s\n"
                 + I18nUtil.getString("jobinfo_field_id") + " ：\t%s\n"
                 + I18nUtil.getString("jobinfo_field_jobdesc") + " ：\t%s\n"

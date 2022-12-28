@@ -10,10 +10,6 @@ server:
   port: 8781
   servlet:
     context-path: /xxl-job-admin-dev
-management:
-  endpoint:
-    shutdown:
-      enabled: true
 
 # TG alarm
 tg:

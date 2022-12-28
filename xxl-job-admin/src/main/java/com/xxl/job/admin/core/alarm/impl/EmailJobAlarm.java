@@ -86,8 +86,7 @@ public class EmailJobAlarm implements JobAlarm {
 
     /**
      * load email job alarm template
-     *
-     * @return
+     * send emoji 🙂 😄 \xC2\xA9 https://apps.timwhitlock.info/emoji/tables/unicode
      */
     private static final String loadEmailJobAlarmTemplate(){
         String mailBodyTemplate = "<h5>" + I18nUtil.getString("jobconf_monitor_detail") + "：</span>" +

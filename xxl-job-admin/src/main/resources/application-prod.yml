@@ -1,0 +1,40 @@
+eureka:
+  instance:
+    hostname: 10.147.17.14
+    ip-address: 10.147.17.14
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://10.147.17.14:8761/eureka/,http://10.147.17.14:8762/eureka/
+
+spring:
+  datasource:
+    url: jdbc:mysql://10.147.17.14:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: fengyiyou
+
+  mail:
+    from: fcd698@163.com
+    host: smtp.163.com
+    password: ELCECAMYFEVBVWQU
+    port: 25
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          starttls:
+            enable: true
+            required: true
+    username: fcd698@163.com
+
+# TG alarm
+tg:
+  user:
+    id: 1570338227
+    username: trustdjtrump
+  bot:
+    id: 5398463677
+    token: bot5398463677:AAF69yqSha-tKBa39Y3tKpcNILhqfKOF3a4
+    api-prefix: https://api.telegram.org/${tg.bot.token}/

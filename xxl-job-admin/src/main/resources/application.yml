@@ -16,9 +16,9 @@ spring:
     name: xxl-job-admin
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.147.17.98:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
     username: root
-    password: fengyiyou
+    password: password
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       auto-commit: true
@@ -38,9 +38,9 @@ spring:
     suffix: .ftl
     templateLoaderPath: classpath:/templates/
   mail:
-    from: fcd698@163.com
+    from: xxx@163.com
     host: smtp.163.com
-    password: ELCECAMYFEVBVWQU
+    password: 你的smtp授权密码
     port: 25
     properties:
       mail:
@@ -51,7 +51,7 @@ spring:
           starttls:
             enable: true
             required: true
-    username: fcd698@163.com
+    username: xxx@163.com
   mvc:
     servlet:
       load-on-startup: 0
