@@ -3,6 +3,7 @@ package com.xxl.job.admin.core.conf;
 import com.xxl.job.admin.core.alarm.JobAlarmer;
 import com.xxl.job.admin.core.scheduler.XxlJobScheduler;
 import com.xxl.job.admin.dao.*;
+import lombok.Getter;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,7 @@ import java.util.Arrays;
  */
 
 @Component
+@Getter
 public class XxlJobAdminConfig implements InitializingBean, DisposableBean {
 
     private static XxlJobAdminConfig adminConfig = null;
@@ -45,9 +47,7 @@ public class XxlJobAdminConfig implements InitializingBean, DisposableBean {
         xxlJobScheduler.destroy();
     }
 
-
     // ---------------------- XxlJobScheduler ----------------------
-
     // conf
     @Value("${xxl.job.i18n}")
     private String i18n;
@@ -86,20 +86,11 @@ public class XxlJobAdminConfig implements InitializingBean, DisposableBean {
     @Resource
     private JobAlarmer jobAlarmer;
 
-
     public String getI18n() {
         if (!Arrays.asList("zh_CN", "zh_TC", "en").contains(i18n)) {
             return "zh_CN";
         }
         return i18n;
-    }
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public String getEmailFrom() {
-        return emailFrom;
     }
 
     public int getTriggerPoolFastMax() {
@@ -118,41 +109,9 @@ public class XxlJobAdminConfig implements InitializingBean, DisposableBean {
 
     public int getLogretentiondays() {
         if (logretentiondays < 7) {
-            return -1;  // Limit greater than or equal to 7, otherwise close
+            // Limit greater than or equal to 7, otherwise close
+            return -1;
         }
         return logretentiondays;
     }
-
-    public XxlJobLogDao getXxlJobLogDao() {
-        return xxlJobLogDao;
-    }
-
-    public XxlJobInfoDao getXxlJobInfoDao() {
-        return xxlJobInfoDao;
-    }
-
-    public XxlJobRegistryDao getXxlJobRegistryDao() {
-        return xxlJobRegistryDao;
-    }
-
-    public XxlJobGroupDao getXxlJobGroupDao() {
-        return xxlJobGroupDao;
-    }
-
-    public XxlJobLogReportDao getXxlJobLogReportDao() {
-        return xxlJobLogReportDao;
-    }
-
-    public JavaMailSender getMailSender() {
-        return mailSender;
-    }
-
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-
-    public JobAlarmer getJobAlarmer() {
-        return jobAlarmer;
-    }
-
 }

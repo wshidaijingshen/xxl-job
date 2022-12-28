@@ -1,0 +1,26 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.147.17.14:8761/eureka/,http://10.147.17.14:8762/eureka/
+spring:
+  application:
+    name: xxl-job-admin-dev
+
+server:
+  port: 8781
+  servlet:
+    context-path: /xxl-job-admin-dev
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+
+# TG alarm
+tg:
+  user:
+    id: 1570338227
+    username: trustdjtrump
+  bot:
+    id: 5398463677
+    token: bot5398463677:AAF69yqSha-tKBa39Y3tKpcNILhqfKOF3a4
+    api-prefix: https://api.telegram.org/${tg.bot.token}/

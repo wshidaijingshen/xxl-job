@@ -30,22 +30,19 @@ public class JobAlarmer implements ApplicationContextAware, InitializingBean {
     public void afterPropertiesSet() throws Exception {
         Map<String, JobAlarm> serviceBeanMap = applicationContext.getBeansOfType(JobAlarm.class);
         if (serviceBeanMap != null && serviceBeanMap.size() > 0) {
-            jobAlarmList = new ArrayList<JobAlarm>(serviceBeanMap.values());
+            jobAlarmList = new ArrayList<>(serviceBeanMap.values());
         }
     }
 
     /**
      * job alarm
-     *
-     * @param info
-     * @param jobLog
-     * @return
      */
     public boolean alarm(XxlJobInfo info, XxlJobLog jobLog) {
 
         boolean result = false;
         if (jobAlarmList!=null && jobAlarmList.size()>0) {
-            result = true;  // success means all-success
+            // success means all-success
+            result = true;
             for (JobAlarm alarm: jobAlarmList) {
                 boolean resultItem = false;
                 try {
@@ -58,8 +55,6 @@ public class JobAlarmer implements ApplicationContextAware, InitializingBean {
                 }
             }
         }
-
         return result;
     }
-
 }

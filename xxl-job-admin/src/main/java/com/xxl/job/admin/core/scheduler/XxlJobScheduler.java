@@ -6,9 +6,13 @@ import com.xxl.job.admin.core.util.I18nUtil;
 import com.xxl.job.core.biz.ExecutorBiz;
 import com.xxl.job.core.biz.client.ExecutorBizClient;
 import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
+import java.io.Closeable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -16,9 +20,9 @@ import java.util.concurrent.ConcurrentMap;
  * @author xuxueli 2018-10-28 00:18:17
  */
 
-public class XxlJobScheduler  {
-    private static final Logger logger = LoggerFactory.getLogger(XxlJobScheduler.class);
-
+@Component
+@Slf4j
+public class XxlJobScheduler  implements ApplicationContextAware {
 
     public void init() throws Exception {
         // init i18n
@@ -42,10 +46,10 @@ public class XxlJobScheduler  {
         // start-schedule  ( depend on JobTriggerPoolHelper )
         JobScheduleHelper.getInstance().start();
 
-        logger.info(">>>>>>>>> init xxl-job admin success.");
+        log.info(">>>>>>>>> init xxl-job admin success.");
     }
 
-    
+    static ApplicationContext context;
     public void destroy() throws Exception {
 
         // stop-schedule
@@ -66,10 +70,13 @@ public class XxlJobScheduler  {
         // admin trigger pool stop
         JobTriggerPoolHelper.toStop();
 
+        if (context instanceof Closeable) {
+            log.info("优雅关闭容器 gracefully shutdown spring...");
+            ((Closeable) context).close();
+        }
     }
 
     // ---------------------- I18n ----------------------
-
     private void initI18n(){
         for (ExecutorBlockStrategyEnum item:ExecutorBlockStrategyEnum.values()) {
             item.setTitle(I18nUtil.getString("jobconf_block_".concat(item.name())));
@@ -98,4 +105,8 @@ public class XxlJobScheduler  {
         return executorBiz;
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        context = applicationContext;
+    }
 }

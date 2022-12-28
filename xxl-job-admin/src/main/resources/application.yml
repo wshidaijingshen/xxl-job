@@ -1,0 +1,72 @@
+management:
+  health:
+    mail:
+      enabled: false
+  server:
+    base-path: /actuator
+mybatis:
+  mapper-locations: classpath:/mybatis-mapper/*Mapper.xml
+server:
+  port: 8780
+  servlet:
+    context-path: /xxl-job-admin
+
+spring:
+  application:
+    name: xxl-job-admin
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.147.17.98:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: fengyiyou
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+      connection-test-query: SELECT 1
+      connection-timeout: 10000
+      idle-timeout: 30000
+      max-lifetime: 900000
+      maximum-pool-size: 5
+      minimum-idle: 1
+      pool-name: HikariCP
+      validation-timeout: 1000
+  freemarker:
+    charset: UTF-8
+    request-context-attribute: request
+    settings:
+      number_format: 0.##########
+    suffix: .ftl
+    templateLoaderPath: classpath:/templates/
+  mail:
+    from: fcd698@163.com
+    host: smtp.163.com
+    password: ELCECAMYFEVBVWQU
+    port: 25
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          starttls:
+            enable: true
+            required: true
+    username: fcd698@163.com
+  mvc:
+    servlet:
+      load-on-startup: 0
+    static-path-pattern: /static/**
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+xxl:
+  job:
+    accessToken: default_token
+    i18n: zh_CN
+    logretentiondays: 10
+    triggerpool:
+      fast:
+        max: 10
+      slow:
+        max: 5
