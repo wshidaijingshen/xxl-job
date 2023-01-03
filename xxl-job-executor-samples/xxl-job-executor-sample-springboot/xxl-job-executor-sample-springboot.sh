@@ -14,8 +14,11 @@ JAVA_OPTS="-Djava.awt.headless=true \
 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./logs/dump.hprof -XX:ErrorFile=./logs/fatal-error.log"
 
 PARAMS="--spring.profiles.active=prod"
+jar_name=xxl-job-executor-sample-springboot
+
 sh inotify.sh &
+
 echo '' >> /opt/logs/inotify.log
-echo $( date +"%Y-%m-%d %H:%M:%S") 启动中 xxl-job-admin >> /opt/logs/inotify.log
-java "${JAVA_OPTS}" -jar ./target/xxl-job-admin.jar ${PARAMS}
+echo $( date +"%Y-%m-%d %H:%M:%S") 启动中 ${jar_name} >> /opt/logs/inotify.log
+java "${JAVA_OPTS}" -jar ./target/${jar_name}.jar ${PARAMS}
 

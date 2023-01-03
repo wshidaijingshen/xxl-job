@@ -1,0 +1,26 @@
+server:
+  port: 8601
+  servlet:
+    context-path: /xxl-job-executor-sample
+spring:
+  application:
+    name: xxl-job-executor-sample
+eureka:
+  instance:
+    ip-address: 10.147.17.90
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://10.147.17.14:8761/eureka/,http://10.147.17.14:8762/eureka/
+xxl:
+  job:
+    accessToken: default_token
+    admin:
+      addresses: http://10.147.17.14:8780/xxl-job-admin
+    executor:
+      address: ''
+      appname: xxl-job-executor-sample
+      ip: ''
+      logpath: ./logs/jobhandler
+      logretentiondays: 30
+      port: 8602

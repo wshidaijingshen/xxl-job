@@ -20,3 +20,4 @@ ENTRYPOINT ["sh","/opt/xxl-job-admin.sh"]
 # 持续集成 思路 https://www.cnblogs.com/zcyy/p/15661544.html
 # docker 学习中文文档 https://yeasy.gitbook.io/docker_practice/image/multistage-builds
 # docker 官方英文文档
+# 基于 Docker 的 Jenkins 持续集成与持续部署 https://cloud.tencent.com/developer/article/1506249

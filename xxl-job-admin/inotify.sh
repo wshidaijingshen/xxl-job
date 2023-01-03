@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 jar_name=xxl-job-admin
 monitor_file1=/opt/target/$jar_name.jar
 monitor_file2=/opt/$jar_name.sh
 monitor_file3=/opt/inotify.sh
 log_file=/opt/logs/inotify.log
+echo $(date +"%Y-%m-%d %H:%M:%S") 等待中 $monitor_file1,$monitor_file2,$monitor_file3 >> $log_file
 sleep 25
 echo $(date +"%Y-%m-%d %H:%M:%S") 监听中 $monitor_file1,$monitor_file2,$monitor_file3 >> $log_file
 inotifywait  -o $log_file  -e attrib,create \

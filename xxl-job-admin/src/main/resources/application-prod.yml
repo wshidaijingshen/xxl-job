@@ -1,6 +1,5 @@
 eureka:
   instance:
-    hostname: 10.147.17.14
     ip-address: 10.147.17.14
     prefer-ip-address: true
   client:
