@@ -1,3 +1,11 @@
 eureka:
   instance:
     ip-address: 10.147.17.14
+spring:
+  cloud:
+    inetutils:
+      preferred-networks:
+        - 10.147
+      ignored-interfaces:
+        - docker0
+        - veth*

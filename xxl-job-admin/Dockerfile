@@ -1,8 +1,8 @@
-FROM storm/jre8-inotify
+FROM stormfeng/jre8-inotify
 WORKDIR /opt
 ENTRYPOINT ["sh","/opt/xxl-job-admin.sh"]
-# docker build -t storm/xxl-job-admin .
-# docker run -it --name=xxl-job-admin -p 8780:8780 -v /home/zorin/upload/xxl-job-admin/:/opt/ storm/xxl-job-admin sh
+# docker build -t stormfeng/xxl-job-admin .
+# docker run -it --name=xxl-job-admin -p 8780:8780 -v /home/zorin/upload/xxl-job-admin/:/opt/ stormfeng/xxl-job-admin sh
 
 # docker start xxl-job-admin
 # docker exec -it xxl-job-admin sh
@@ -14,7 +14,7 @@ ENTRYPOINT ["sh","/opt/xxl-job-admin.sh"]
 # docker stats --no-stream
 # docker stop xxl-job-admin; docker update -m 250m --memory-swap 300m xxl-job-admin; docker restart xxl-job-admin; docker stats
 # docker rm -vf xxl-job-admin
-# docker rmi storm/xxl-job-admin
+# docker rmi stormfeng/xxl-job-admin
 
 # 本脚本来源，持续集成技巧，替换jar包 https://www.cnblogs.com/toutou/p/docker_springboot.html
 # 持续集成 思路 https://www.cnblogs.com/zcyy/p/15661544.html
