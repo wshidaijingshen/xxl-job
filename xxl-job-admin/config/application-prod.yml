@@ -1,10 +1,6 @@
 eureka:
   instance:
     ip-address: 10.147.17.14
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: http://10.147.17.14:8761/eureka/,http://10.147.17.14:8762/eureka/
 
 spring:
   datasource:

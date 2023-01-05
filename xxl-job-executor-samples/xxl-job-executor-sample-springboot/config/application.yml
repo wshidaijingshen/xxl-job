@@ -5,6 +5,16 @@ server:
 spring:
   application:
     name: xxl-job-executor-sample
+  cloud:
+    inetutils:
+      preferred-networks:
+        - 10.147
+      ignored-interfaces:
+        - docker0
+        - veth*
+        - Vmware*
+        - 10.9.2.65
+
 eureka:
   instance:
     ip-address: 10.147.17.90

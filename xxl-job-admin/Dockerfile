@@ -1,6 +1,6 @@
 FROM stormfeng/jre8-inotify
 WORKDIR /opt
-ENTRYPOINT ["sh","/opt/xxl-job-admin.sh"]
+ENTRYPOINT ["sh","/xxl-job-admin.sh"]
 # docker build -t stormfeng/xxl-job-admin .
 # docker run -it --name=xxl-job-admin -p 8780:8780 -v /home/zorin/upload/xxl-job-admin/:/opt/ stormfeng/xxl-job-admin sh
 

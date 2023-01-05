@@ -11,9 +11,26 @@ server:
   servlet:
     context-path: /xxl-job-admin
 
+eureka:
+  instance:
+    ip-address: 10.147.17.90
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://10.147.17.14:8761/eureka/,http://10.147.17.14:8762/eureka/
+
 spring:
   application:
     name: xxl-job-admin
+    cloud:
+      inetutils:
+        preferred-networks:
+          - 10.147.17.*
+        ignored-interfaces:
+          - docker0
+          - veth*
+          - Vmware*
+          - 10.9.2.65
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
