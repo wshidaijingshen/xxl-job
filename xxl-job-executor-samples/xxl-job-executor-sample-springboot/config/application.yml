@@ -57,3 +57,14 @@ management:
       enabled: true # 先设置这里，才会显示info 信息 https://docs.spring.io/spring-boot/docs/2.7.7/reference/html/actuator.html#actuator.endpoints.info.custom-application-information
     os:
       enabled: true
+
+info:
+  name: ${spring.application.name}
+  hostname: ${eureka.instance.hostname}
+  port: ${server.port}
+  versions:
+    spring-cloud: 2021.0.5
+    spring-boot: 2.7.7
+    cloud-boot-version: https://start.spring.io/actuator/info
+    tomcat: 9.0.70
+    Jersey: "1.19.4 05/24/2017 03:20 PM"
