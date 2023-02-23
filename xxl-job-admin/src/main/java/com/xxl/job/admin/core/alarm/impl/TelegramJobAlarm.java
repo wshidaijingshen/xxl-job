@@ -70,7 +70,7 @@ public class TelegramJobAlarm implements JobAlarm {
         String content = String.format(alarmTemplate(contextPath, port), group != null ? group.getTitle()+"\uD83D\uDCA9" : "\uD83D\uDCA9", info.getId(), info.getJobDesc(), alarmContent);
         try {
             // api params: https://core.telegram.org/bots/api#sendmessage
-            // 测试 https://api.telegram.org/bot5398463677:AAF69yqSha-tKBa39Y3tKpcNILhqfKOF3a4/sendMessage?chat_id=1570338227&text=111
+            // 测试 https://api.telegram.org/bot5398463677:AAF69yqSha-tKBa39Y3tKpcNILhqfKOF3a4/sendMessage?chat_id=1570338227&text=收到了吗
             final String s = HttpUtil.get(apiPrefix+"sendMessage", new HashMap() {{
                 put("chat_id", userId);
                 put("disable_notification", true);

@@ -47,7 +47,8 @@ public class SampleXxlJob {
     public void tgJobHandler() {
         XxlJobHelper.log("tg msg sender starting");
         String text = XxlJobHelper.getJobParam();
-        MsgUtil.send(1570338227, text);
+
+        MsgUtil.send(text, 1570338227);
     }
 
     /**
