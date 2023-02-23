@@ -1,5 +1,6 @@
 package com.xxl.job.executor.service.jobhandler;
 
+import cn.hutool.json.JSONUtil;
 import com.xxl.job.core.context.XxlJobHelper;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.util.MsgUtil;
@@ -48,7 +49,10 @@ public class SampleXxlJob {
         XxlJobHelper.log("tg msg sender starting");
         String text = XxlJobHelper.getJobParam();
 
-        MsgUtil.send(text, 1570338227);
+        String result = MsgUtil.send(text, 1570338227);
+        if (true != (Boolean) JSONUtil.parseObj(result).get("ok")) {
+            throw new RuntimeException(result);
+        }
     }
 
     /**

@@ -17,19 +17,20 @@ import java.util.HashMap;
 public class MsgUtil {
     public static final String tgApiPrefix = "https://api.telegram.org/bot5398463677:AAF69yqSha-tKBa39Y3tKpcNILhqfKOF3a4/";
 
-    public static void send(Object content,Integer... userId) {
-        send(null, content, userId);
+    public static String send(Object content,Integer... userId) {
+       return send(null, content, userId);
     }
 
-    public static void send(Sender type, Object content,Integer... userId) {
+    public static String send(Sender type, Object content,Integer... userId) {
         type = type == null ? Sender.TELEGRAM : type;
         if (type== Sender.TELEGRAM) {
-            sendTG(content,userId);
+            return sendTG(content,userId);
         }
+        return "";
     }
 
-    public static void sendTG(Object content,Integer... userId) {
-        final String s = HttpUtil.get(tgApiPrefix + "sendMessage", new HashMap() {{
+    public static String sendTG(Object content,Integer... userId) {
+        return HttpUtil.get(tgApiPrefix + "sendMessage", new HashMap() {{
             put("chat_id", userId);
             put("disable_notification", true);
             put("parse_mode", "MarkdownV2");
