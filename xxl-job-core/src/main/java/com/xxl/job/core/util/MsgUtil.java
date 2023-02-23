@@ -31,7 +31,7 @@ public class MsgUtil {
         final String s = HttpUtil.get(tgApiPrefix + "sendMessage", new HashMap() {{
             put("chat_id", userId);
             put("disable_notification", true);
-            put("parse_mode", "Markdown");
+            put("parse_mode", "MarkdownV2");
             put("protect_content", true);
             put("allow_sending_without_reply", true);
             put("text", content);
