@@ -36,7 +36,7 @@ public class MsgUtil {
             put("parse_mode", "MarkdownV2");
             put("protect_content", true);
             put("allow_sending_without_reply", true);
-            put("text", LocalDateTime.now() + ":\n" + content);
+            put("text", "*"+LocalDateTime.now() + "* " + content);
         }}, 3000);
     }
 }
