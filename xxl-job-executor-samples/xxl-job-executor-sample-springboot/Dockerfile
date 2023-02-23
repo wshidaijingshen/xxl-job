@@ -1,6 +1,6 @@
 FROM stormfeng/jre8-inotify
 WORKDIR /opt
-ENTRYPOINT ["sh","/opt/xxl-job-executor-sample-springboot.sh"]
+ENTRYPOINT ["sh","xxl-job-executor-sample-springboot.sh"]
 # docker build -t stormfeng/xxl-job-executor-sample-springboot .
 # docker run -it --name=xxl-job-executor-sample-springboot -p 8780:8780 -v /home/zorin/upload/xxl-job-executor/:/opt/ stormfeng/xxl-job-executor-sample-springboot sh
 
