@@ -34,3 +34,26 @@ xxl:
       logpath: ./logs/jobhandler
       logretentiondays: 30
       port: 8602
+
+# management endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      # 给所有人显示 数据库，磁盘，ping等信息 https://www.jianshu.com/p/1aadc4c85f51
+      show-details: always
+  health:
+    mail:
+      enabled: false
+  #  server:
+  #    base-path: /actuator 会导致 管理路径冗余而失败 /actuator/actuator/info，不要添加这个
+  info:
+    java:
+      enabled: true
+    env:
+      enabled: true # 先设置这里，才会显示info 信息 https://docs.spring.io/spring-boot/docs/2.7.7/reference/html/actuator.html#actuator.endpoints.info.custom-application-information
+    os:
+      enabled: true
