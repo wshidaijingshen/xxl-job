@@ -2,6 +2,7 @@ package com.xxl.job.core.util;
 
 import cn.hutool.http.HttpUtil;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 /**
@@ -34,7 +35,7 @@ public class MsgUtil {
             put("parse_mode", "MarkdownV2");
             put("protect_content", true);
             put("allow_sending_without_reply", true);
-            put("text", content);
+            put("text", LocalDateTime.now() + ":\n" + content);
         }}, 3000);
     }
 }
