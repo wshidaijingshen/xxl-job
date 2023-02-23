@@ -2,6 +2,7 @@ package com.xxl.job.executor.service.jobhandler;
 
 import com.xxl.job.core.context.XxlJobHelper;
 import com.xxl.job.core.handler.annotation.XxlJob;
+import com.xxl.job.core.util.MsgUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -42,11 +43,18 @@ public class SampleXxlJob {
         // default success
     }
 
+    @XxlJob("tgJobHandler")
+    public void tgJobHandler() {
+        XxlJobHelper.log("tg msg sender starting");
+        String text = XxlJobHelper.getJobParam();
+        MsgUtil.send(1570338227, text);
+    }
+
     /**
      * 2、分片广播任务
      */
     @XxlJob("shardingJobHandler")
-    public void shardingJobHandler() throws Exception {
+    public void shardingJobHandler() {
 
         // 分片参数
         int shardIndex = XxlJobHelper.getShardIndex();
@@ -121,13 +129,11 @@ public class SampleXxlJob {
      *      "data: content\n";
      */
     @XxlJob("httpJobHandler")
-    public void httpJobHandler() throws Exception {
-
+    public void httpJobHandler() {
         // param parse
         String param = XxlJobHelper.getJobParam();
         if (param==null || param.trim().length()==0) {
             XxlJobHelper.log("param["+ param +"] invalid.");
-
             XxlJobHelper.handleFail();
             return;
         }
@@ -151,13 +157,11 @@ public class SampleXxlJob {
         // param valid
         if (url==null || url.trim().length()==0) {
             XxlJobHelper.log("url["+ url +"] invalid.");
-
             XxlJobHelper.handleFail();
             return;
         }
         if (method==null || !Arrays.asList("GET", "POST").contains(method)) {
             XxlJobHelper.log("method["+ method +"] invalid.");
-
             XxlJobHelper.handleFail();
             return;
         }

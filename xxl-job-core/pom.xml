@@ -27,6 +27,12 @@
 			<version>${gson.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+<!--			<version>${hutool-all.version}</version>-->
+		</dependency>
+
 		<!-- ********************** plugin ********************** -->
 		<!-- groovy-all -->
 		<dependency>
