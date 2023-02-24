@@ -30,6 +30,9 @@ public class MsgUtil {
     }
 
     public static String sendTG(Object content,Integer... userId) {
+        // https://hutool.cn/docs/#/http/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98
+        System.setProperty("https.protocols", "TLSv1.2,TLSv1.1,SSLv3");
+
         return HttpUtil.get(tgApiPrefix + "sendMessage", new HashMap() {{
             put("chat_id", userId);
             put("disable_notification", true);
